@@ -9,4 +9,17 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello world" 
+      - run: echo "hello world"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+    
