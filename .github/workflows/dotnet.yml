@@ -11,14 +11,17 @@ jobs:
     steps:
       - run: echo "hello world"
   build:
+    needs: hello_world
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world"
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world"
   publish:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world"
