@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world"
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
   sonarcloud:
     needs: hello_world
     runs-on: ubuntu-latest
@@ -28,13 +33,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "hello world"
   publish:
-    needs: [sonarcloud,test]
+    needs: [test,sonarcloud]
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world"
