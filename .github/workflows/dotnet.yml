@@ -34,7 +34,7 @@ jobs:
     steps:
       - run: echo "hello world"
   publish:
-    needs: sonarcloud
+    needs: [sonarcloud,test]
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello world"
