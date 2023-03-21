@@ -1,0 +1,41 @@
+name: hello world
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+  build:
+    needs: hello_world
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+  sonarcloud:
+    needs: hello_world
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  publish:
+    needs: [test,sonarcloud]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello world"
+    
